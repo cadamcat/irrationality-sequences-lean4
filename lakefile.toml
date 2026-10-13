@@ -1,0 +1,19 @@
+name = "IrrationalitySequences"
+version = "1.0.0"
+defaultTargets = ["IrrationalitySequences"]
+moreLeanArgs = ["--trust=0"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0-rc4"
+
+[[lean_lib]]
+name = "IrrationalitySequences"
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Verification"
+globs = ["Verification.+"]

@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite it using the metadata from this file."
+type: software
+title: "irrationality-sequences-lean4: A Lean 4 proof that irrationality sequences exist"
+abstract: >-
+  A Lean 4 proof that some sequence of positive integers keeps an irrational
+  reciprocal sum under every bounded integer perturbation with nonzero
+  denominators (the existence question of Erdős Problem 264). The theorems use
+  only the axioms propext, Classical.choice and Quot.sound.
+authors:
+  - family-names: Xu
+    given-names: Yao
+    alias: cadamcat
+repository-code: "https://github.com/cadamcat/irrationality-sequences-lean4"
+url: "https://github.com/cadamcat/irrationality-sequences-lean4"
+license: Apache-2.0
+version: 1.0.0
+keywords:
+  - Lean 4
+  - formalization
+  - irrationality
+  - Erdős problems
