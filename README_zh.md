@@ -2,7 +2,7 @@
 
 # 无理数序列的 Lean 4 形式化
 
-存在一个正整数序列 `a`，使得对每一个有界整数序列 `b`，只要对所有 `n` 都有 `a n + b n ≠ 0`，和 `∑ 1 / (a n + b n)` 就是无理数。这是 Justin Sun Prize 题库中的 JSP-000228，按其存在性问句理解；它也是 [Erdős 问题 #264](https://www.erdosproblems.com/264) 背后的存在性问题。
+存在一个正整数序列 `a`，使得对每一个有界整数序列 `b`，只要对所有 `n` 都有 `a n + b n ≠ 0`，和 `∑ 1 / (a n + b n)` 就是无理数。这是 [Erdős 问题 #264](https://www.erdosproblems.com/264) 背后的存在性问题。
 
 - **作者：** Yao Xu（[@cadamcat](https://github.com/cadamcat)），见[作者与署名](AUTHORS.md)。
 - 开发中使用了 AI 辅助（Claude Code 和 Codex）；全部证明由 Lean 4 内核检查。
