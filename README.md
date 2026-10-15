@@ -5,7 +5,7 @@
 There is a sequence of positive integers `a` such that `∑ 1 / (a n + b n)` is irrational for every bounded integer sequence `b` with `a n + b n ≠ 0` for all `n`. This is the existence question behind [Erdős Problem #264](https://www.erdosproblems.com/264).
 
 - **Author:** Yao Xu ([@cadamcat](https://github.com/cadamcat)); see [authors and attribution](AUTHORS.md).
-- Developed with AI assistance (Claude Code and Codex); all proofs are verified by the Lean 4 kernel.
+- Developed with AI assistance; all proofs are verified by the Lean 4 kernel.
 
 ## Scope
 
