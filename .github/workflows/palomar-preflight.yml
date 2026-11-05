@@ -1,0 +1,18 @@
+# Palomar Registry mechanical preflight for main b889b9c (predictive only; not a registry submission).
+name: Palomar preflight
+on:
+  push:
+    branches: [palomar-preflight]
+permissions:
+  contents: read
+jobs:
+  palomar-preflight:
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+    with:
+      repository: cadamcat/irrationality-sequences-lean4
+      commit: b889b9c4ea4d1cb3a904e1702b57eafcd3815ece
+      pipeline_commit: 14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+      request_id: preflight264
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: '{"comparator_config_path":"Challenge.json","authorization_relationship":"I am a responsible author or maintainer"}'
