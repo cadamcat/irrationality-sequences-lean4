@@ -1,0 +1,139 @@
+# formalization.yaml (v0.4) for the Palomar Registry submission of this revision.
+version: "v0.4"
+
+project:
+  name: "Existence of irrationality sequences (Erdős Problem 264), in Lean 4"
+  description: >-
+    A Lean 4 proof that some sequence of positive integers a is an
+    irrationality sequence in a strong sense: the sum of 1/(a(n) + b(n)) is
+    irrational for every bounded integer sequence b with a(n) + b(n) ≠ 0 for
+    all n. This answers the existence question behind Erdős Problem 264. The
+    witness is the recursively defined sequence
+    fast(n) = 4 (n + 1) ∏_{i < n} (fast(i) + n + 1), whose terms outgrow the
+    product of all earlier perturbed denominators; for a bounded perturbation
+    the tail of the series is then smaller than the gap any rational value
+    would leave against the partial sums. The registered theorem depends only
+    on the axioms propext, Classical.choice and Quot.sound.
+  authors:
+    - "Yao Xu"
+  responsible_maintainers:
+    - "Yao Xu"
+  license: "Apache-2.0"
+
+classification:
+  arxiv: ["math.NT"]
+  msc2020: ["11J72"]
+
+sources:
+  - title: "On several irrationality problems for Ahmes series"
+    authors: ["Vjekoslav Kovač", "Terence Tao"]
+    id: "arXiv:2406.17593"
+    type: "paper"
+    location: "Theorem 2.7"
+    relationship: "independently-proves"
+    note: >-
+      Kovač and Tao prove that irrationality sequences exist with any
+      prescribed super-exponential growth. This project proves existence
+      independently, with a different, elementary construction and tail
+      estimate; it formalizes neither their proof nor their growth statement.
+    author_endorsement: "not-contacted"
+  - title: "Erdős Problem #264"
+    contributors:
+      - name: "Paul Erdős"
+        role: "problem-proposer"
+    id: "https://www.erdosproblems.com/264"
+    type: "web post"
+    relationship: "background"
+    note: >-
+      The problem page states the question and Erdős's example 2^(2^n). It
+      also asks whether 2^n and n! are irrationality sequences; this project
+      addresses neither.
+
+related_formalizations:
+  - id: "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/264.lean"
+    relationship: "other"
+    note: >-
+      Formal Conjectures defines Erdos264.IsIrrationalitySequence, which also
+      requires b(n) ≠ 0 for every n. The definition here,
+      IsStrongIrrationalitySequence, adapts it and drops that requirement, so
+      the property proved here implies the Formal Conjectures property.
+  - id: "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos264b.lean"
+    relationship: "independent"
+    note: >-
+      It treats perturbations by bounded nonnegative integer sequences b with
+      b(n) ≠ 0, and states that 2^(2^n) is an irrationality sequence in that
+      sense, that 2^n is not, and an explicit rational sum for 2^n. The
+      perturbations here are integer-valued and may be negative or zero. No
+      code from it is used.
+
+status:
+  scope: >-
+    Complete proof of the existence statement Erdos264.exists_irrationality_sequence
+    (and of the equivalent Erdos264.statement, stated through the project
+    definitions). Not formalized: whether 2^n or n! is an irrationality
+    sequence (Kovač and Tao showed that 2^n is not; n! is open), and the
+    growth-rate refinements of Kovač and Tao.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["GPT-6.1 Sol", "Claude Opus 5.5"]
+      framework: "Codex CLI and Claude Code"
+      tool_setup: >-
+        The author fixed the target statement and the acceptance criteria in
+        advance: the result depends only on Lean's standard axioms and is
+        accepted by Comparator against the challenge statement. AI coding
+        agents found the construction, wrote the proof and prepared the
+        release.
+      cost:
+        spend_usd: "subscription-based usage"
+        hardware: "API-only models; local builds on an Apple Silicon Mac"
+  spend_usd: "subscription-based usage"
+  notes: >-
+    The author is responsible for the content. Model agreement was not
+    treated as verification; acceptance rests on the Lean kernel checks
+    described under review.
+
+fidelity:
+  divergences: >-
+    None for the existence question. The perturbation condition is stronger
+    than in Formal Conjectures, since b(n) = 0 is allowed. Perturbations are
+    bounded integer sequences that keep every denominator nonzero, and the
+    sum is Mathlib's tsum over the reals.
+
+review:
+  status: "agent-reviewed"
+  reviewers: []
+  notes: >-
+    A fresh clone of release v1.0.0 passed the project build with
+    scripts/verify.sh (both theorems depend only on propext,
+    Classical.choice and Quot.sound; a planted sorry makes the script fail),
+    a kernel replay with leanchecker --fresh, and Comparator with both the
+    NanoDa kernel and Lean's default kernel. Verification/NonVacuity.lean
+    checks that the property is not satisfied trivially. No independent
+    human expert has reviewed the formalization. Details are in
+    docs/verification.md.
+
+alignment:
+  namespace: "Erdos264"
+  statements:
+    - source: "Erdős Problem #264, existence of an irrationality sequence"
+      lean: "Erdos264.exists_irrationality_sequence"
+      module: "IrrationalitySequences/Main.lean"
+      status: "proved"
+      note: >-
+        Compared by Comparator with the statement of the same name in
+        Challenge.lean, which uses Mathlib vocabulary only.
+    - source: "The same statement through the project definitions"
+      lean: "Erdos264.statement"
+      module: "IrrationalitySequences/Main.lean"
+      status: "proved"
+      note: "Uses IsStrongIrrationalitySequence and Statement from IrrationalitySequences/Basic.lean."
+
+acknowledgements: >-
+  Mathlib supplies the underlying theory, and the definition adapts Formal
+  Conjectures; their authors and licenses are credited in THIRD_PARTY.md.
+  Comparator, lean4export and NanoDa were used for verification.
